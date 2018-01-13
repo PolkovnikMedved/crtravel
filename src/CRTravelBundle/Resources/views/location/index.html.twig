@@ -1,0 +1,41 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+    Locations show
+{% endblock %}
+
+{% block body %}
+    <h1>Locations</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td><a href="{{ path('location_show', { 'id': location.id }) }}">{{ location.id }}</a></td>
+                <td>{{ location.name }}</td>
+                <td>
+                    <a href="{{ path('location_show', { 'id': location.id }) }}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('location_edit', { 'id': location.id }) }}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col">
+            <p>Create a new location : <a href="{{ path('location_new') }}" class="btn btn-primary btn-circle"><i class="fa fa-plus" aria-hidden="true"></i></a></p>
+        </div>
+    </div>
+{% endblock %}

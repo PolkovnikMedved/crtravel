@@ -1,0 +1,64 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+    Type show
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-2">
+            <a href="{{ path('partnertype_index') }}" class="btn btn-warning btn-circle"><i class="fa fa-arrow-left"></i></a>
+        </div>
+        <div class="col-10">
+            <h1>Type</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Id</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partnerType.id }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Name</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partnerType.name }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Picture address</p>
+        </div>
+        <div class="col-10">
+            <img src="{{ asset('pictures/' ~ partnerType.pictureAddress) }}" alt="{{ partnerType.name }}" class="small-picture"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Country</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partnerType.country }}</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-left">
+        <div class="col-1">
+            <a href="{{ path('partnertype_edit', { 'id': partnerType.id }) }}" class="btn btn-outline-warning">Edit</a>
+        </div>
+        <div class="col-1">
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-outline-danger delete">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

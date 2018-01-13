@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Costa Rica Travel | {% block title %}{% endblock %}</title>
+        <link rel="icon" href="{{ asset('pictures/tucan.png') }}"/>
+
+        <link rel="stylesheet" href="{{ asset('assets/external/bootstrap/css/bootstrap.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('assets/external/font-awesome/css/font-awesome.css') }}"/>
+
+        <link rel="stylesheet" href="{{ asset('assets/custom/css/crt_custom.css') }}"/>
+
+    </head>
+
+    <body>
+        <header class="container-fluid" id="header">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="{{ path('dashboard') }}">CRTravel</a>
+
+                {%  if app.user %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_profile_show') }}" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="fa fa-user"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_security_logout') }}" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+                {%  endif %}
+            </nav>
+        </header>
+
+        <div class="container-fluid" id="body">
+            <div class="row">
+                <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('dashboard') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('location_index') }}">Location</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('partner_index') }}">Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('partnerrequest_index') }}">Request</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('partnertype_index') }}">Type</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% block body %}
+                    {% endblock %}
+                </main>
+            </div>
+        </div>
+
+        <footer class="bg-dark">
+            <div class="row justify-content-md-center">
+                <div class="col-2">
+                    <p class="text-light">Southdev © | {{ "now"|date("Y") }}</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="{{ asset('assets/external/jquery/jquery.js') }}"></script>
+        <script src="{{ asset('assets/external/bootstrap/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('assets/external/popper/popper.js') }}"></script>
+
+        <script src="{{ asset('assets/custom/js/crt.js') }}"></script>
+    </body>
+</html>

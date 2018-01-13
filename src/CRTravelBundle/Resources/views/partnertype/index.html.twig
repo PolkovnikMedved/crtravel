@@ -1,0 +1,48 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+Types
+{% endblock %}
+
+{% block body %}
+    <h1>Partner types</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Picture</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for partnerType in partnerTypes %}
+            <tr>
+                <td><a href="{{ path('partnertype_show', { 'id': partnerType.id }) }}">{{ partnerType.id }}</a></td>
+                <td>{{ partnerType.name }}</td>
+                <td>
+                    {# Here, we concatenate the pictures directory path (see config.yml) and the picture name #}
+                    <img src="{{ asset('pictures/' ~ partnerType.pictureAddress) }}" alt="{{ partnerType.name }}" class="small-picture"/>
+                </td>
+                <td>{{ partnerType.country }}</td>
+                <td>
+                    <a href="{{ path('partnertype_show', { 'id': partnerType.id }) }}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('partnertype_edit', { 'id': partnerType.id }) }}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col">
+            <p>Create a new type : <a href="{{ path('partnertype_new') }}" class="btn btn-primary btn-circle"><i class="fa fa-plus" aria-hidden="true"></i></a></p>
+        </div>
+    </div>
+{% endblock %}

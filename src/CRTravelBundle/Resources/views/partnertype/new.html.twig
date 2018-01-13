@@ -1,0 +1,26 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+Type create
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-2">
+            <a href="{{ path('partnertype_index') }}" class="btn btn-warning btn-circle"><i class="fa fa-arrow-left"></i></a>
+        </div>
+        <div class="col-10">
+            <h1>Type creation</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" class="btn btn-success"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

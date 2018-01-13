@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Costa Rica Travel | {% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ asset('pictures/tucan.png') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('assets/external/bootstrap/css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/external/font-awesome/css/font-awesome.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('assets/custom/css/crt_custom.css') }}"/>
+
+</head>
+
+<body id="welcome">
+<header class="container-fluid" id="header">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{{ path('home') }}">CRTravel</a>
+
+        {%  if app.user %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('fos_user_security_logout') }}" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="fa fa-sign-out"></i></a>
+            </li>
+        </ul>
+        {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_security_login') }}" data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-in"></i></a>
+                </li>
+            </ul>
+        {%  endif %}
+    </nav>
+</header>
+
+<div class="container-fluid" id="full-background">
+    <div class="row">
+        <div class="col">
+            <main role="main" id="welcome-body">
+                {% block body %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark">
+    <div class="row justify-content-md-center">
+        <div class="col-2">
+            <p class="text-light">Southdev © | {{ "now"|date("Y") }}</p>
+        </div>
+    </div>
+</footer>
+
+<script src="{{ asset('assets/external/jquery/jquery.js') }}"></script>
+<script src="{{ asset('assets/external/bootstrap/js/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/external/popper/popper.js') }}"></script>
+</body>
+</html>

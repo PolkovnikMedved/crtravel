@@ -1,0 +1,45 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+Requests
+{% endblock %}
+
+{% block body %}
+    <h1>Requests</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for partnerRequest in partnerRequests %}
+            <tr>
+                <td><a href="{{ path('partnerrequest_show', { 'id': partnerRequest.id }) }}">{{ partnerRequest.id }}</a></td>
+                <td>{{ partnerRequest.email }}</td>
+                <td>{{ partnerRequest.name }}</td>
+                <td>{{ partnerRequest.phone }}</td>
+                <td>
+                    <a href="{{ path('partnerrequest_show', { 'id': partnerRequest.id }) }}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('partnerrequest_edit', { 'id': partnerRequest.id }) }}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col">
+            <p>Create a new request : <a href="{{ path('partnerrequest_new') }}" class="btn btn-primary btn-circle"><i class="fa fa-plus" aria-hidden="true"></i></a></p>
+        </div>
+    </div>
+{% endblock %}

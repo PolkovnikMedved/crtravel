@@ -1,0 +1,51 @@
+.small-picture{
+    width:30px;
+    height:30px;
+}
+
+.medium-picture{
+    width:100px;
+    height:auto;
+}
+
+.fa{
+    font-size: 1.4em;
+}
+
+#body{
+    margin-top:55px;
+}
+.text-light{
+    text-align:center;
+    padding:5px;
+}
+
+footer{
+    position:fixed;
+    width:100%;
+    bottom:0;
+    height:30px;
+}
+
+#welcome-body{
+    margin-top:60px;
+    margin-bottom:50px;
+}
+#full-background{
+    background: url("../../../pictures/playa.jpeg") no-repeat center center fixed;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-size:cover;
+}
+
+#login-block{
+    background-color: whitesmoke;
+    padding:10px;
+    border-radius: 5px;
+}
+main{
+    padding-bottom:60px;
+}

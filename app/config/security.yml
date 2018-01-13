@@ -1,0 +1,36 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    encoders:
+        CRTravelBundle\Entity\User: bcrypt
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            anonymous: true
+            form_login:
+                provider: fos_userbundle
+                default_target_path: dashboard
+                csrf_token_generator: security.csrf.token_manager
+                check_path: /login_check
+            logout: true
+            remember_me:
+                secret:     '%secret%'
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_FAT_NIGGA }  # change role + set mail config if you want to use
+        - { path: ^/resetting, role: IS_FAT_NIGGA }
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }

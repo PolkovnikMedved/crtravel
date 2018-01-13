@@ -1,0 +1,46 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+Location show
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-2">
+            <a href="{{ path('location_index') }}" class="btn btn-warning btn-circle"><i class="fa fa-arrow-left"></i></a>
+        </div>
+        <div class="col-10">
+            <h1>Location</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Id</p>
+        </div>
+        <div class="col-10">
+            <p>{{ location.id }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Name</p>
+        </div>
+        <div class="col-10">
+            <p>{{ location.name }}</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-left">
+        <div class="col-1">
+            <a href="{{ path('location_edit', { 'id': location.id }) }}" class="btn btn-outline-warning">Edit</a>
+        </div>
+        <div class="col-1">
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-outline-danger delete">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

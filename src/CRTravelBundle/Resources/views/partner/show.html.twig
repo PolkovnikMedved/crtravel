@@ -1,0 +1,171 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+Partner show
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-2">
+            <a href="{{ path('partner_index') }}" class="btn btn-warning btn-circle"><i class="fa fa-arrow-left"></i></a>
+        </div>
+        <div class="col-10">
+            <h1>Partner</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Id</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.id }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Name</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.name }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Email</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.email }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Phone</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.phone }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Address</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.address }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Picture</p>
+        </div>
+        <div class="col-10">
+            <img src="{{ asset('pictures/' ~ partner.pictureAddress) }}" alt="{{ partner.pictureAddress }}" class="medium-picture"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Latitude</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.latitude }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Longitude</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.longitude }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Horary</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.horary }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Comment</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.comment }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Is Special Offer </p>
+        </div>
+        <div class="col-10">
+            <p>{% if partner.isSpecialOffer %}Yes{% else %}No{% endif %}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Offer</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.offer }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Trip Advisor</p>
+        </div>
+        <div class="col-10">
+            <a href="{{ partner.tripAdvisorLink }}" target="_blank">Go to link</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Location</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.location.name }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Type</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.type.name }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <p>Country</p>
+        </div>
+        <div class="col-10">
+            <p>{{ partner.country }}</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-left">
+        <div class="col-1">
+            <a href="{{ path('partner_edit', { 'id': partner.id }) }}" class="btn btn-outline-warning">Edit</a>
+        </div>
+        <div class="col-1">
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-outline-danger delete">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

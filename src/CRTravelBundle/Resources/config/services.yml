@@ -1,0 +1,4 @@
+services:
+#    cr_travel.example:
+#        class: CRTravelBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

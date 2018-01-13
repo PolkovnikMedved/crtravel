@@ -1,0 +1,27 @@
+{% extends 'CRTravelBundle:layout:layout.html.twig' %}
+
+{% block title %}
+    edit profile
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-1">
+            <a href="{{ path('fos_user_profile_show') }}" class="btn btn-warning btn-circle"><i class="fa fa-arrow-left"></i></a>
+        </div>
+        <div class="col-10">
+            <h1>Edit profile</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+            {{ form_widget(form) }}
+            <div>
+                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-success"/>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

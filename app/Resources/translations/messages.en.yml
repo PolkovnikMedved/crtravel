@@ -1,0 +1,8 @@
+security.login.username: Email
+security.login.password: Password
+security.login.remember_me: 'Remember me'
+security.login.submit: Login
+profile.show.username: Username
+profile.show.email: Email
+profile.edit.submit: 'Submit'
+change_password.submit: 'Submit'
