@@ -5,7 +5,7 @@ namespace CRTravelBundle\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -21,19 +21,18 @@ class PartnerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', TextType::class)
+        $builder->add('name', TextType::class, array('required' => false))
                 ->add('email', EmailType::class)
                 ->add('phone', TextType::class)
                 ->add('address', TextareaType::class)
-                ->add('pictureAddress', FileType::class, array(
-                    'data_class' => null,
+                ->add('pictureAddressFile', FileType::class, array(
                     'label' => 'Choose a picture '
                 ))
                 ->add('latitude', TextType::class)
                 ->add('longitude', TextType::class)
                 ->add('horary', TextType::class)
                 ->add('comment', TextareaType::class)
-                ->add('isSpecialOffer', CheckboxType::class)
+                ->add('isSpecialOffer', CheckboxType::class, array('required' => false))
                 ->add('offer', TextType::class)
                 ->add('tripAdvisorLink', UrlType::class)
                 ->add('country', TextType::class)
@@ -44,6 +43,18 @@ class PartnerType extends AbstractType
                 ->add('type', EntityType::class, array(
                     'class' => 'CRTravelBundle:PartnerType',
                     'choice_label' => 'name'
+                ))
+                ->add('hotWords', CollectionType::class, array(
+                    'entry_type' => HotWordType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false
+                ))
+                ->add('pictures', CollectionType::class, array(
+                    'entry_type' => PictureType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false
                 ));
     }
     

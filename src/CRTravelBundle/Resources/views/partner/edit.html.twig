@@ -14,10 +14,38 @@ Partner edit
         </div>
     </div>
 
+
     <div class="row">
         <div class="col">
             {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
+            {{ form_row(edit_form.name) }}
+            {{ form_row(edit_form.email) }}
+            {{ form_row(edit_form.phone) }}
+            {{ form_row(edit_form.address) }}
+            {{ form_row(edit_form.pictureAddressFile) }}
+            {{ form_row(edit_form.latitude) }}
+            {{ form_row(edit_form.longitude) }}
+            {{ form_row(edit_form.horary) }}
+            {{ form_row(edit_form.comment) }}
+            {{ form_row(edit_form.isSpecialOffer) }}
+            {{ form_row(edit_form.offer) }}
+            {{ form_row(edit_form.location) }}
+            {{ form_row(edit_form.tripAdvisorLink) }}
+            {{ form_row(edit_form.type) }}
+            {{ form_row(edit_form.country) }}
+            <div class="hot-words" data-prototype="{{ form_widget(edit_form.hotWords.vars.prototype)|e('html_attr') }}">
+                <h3>Hot Words</h3>
+                {% for hotWord in edit_form.hotWords %}
+                    <p>{{ form_row(hotWord.name) }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="pictures" data-prototype="{{ form_widget(edit_form.pictures.vars.prototype)|e('html_attr') }}">
+                <h3>Pictures</h3>
+                {% for picture in edit_form.pictures %}
+                    <p>{{ form_row(picture.addressFile) }}</p>
+                {% endfor %}
+            </div>
             <input type="submit" value="Edit"  class="btn btn-outline-warning"/>
             {{ form_end(edit_form) }}
         </div>

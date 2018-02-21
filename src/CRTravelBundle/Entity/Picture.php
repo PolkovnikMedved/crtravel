@@ -3,6 +3,8 @@
 namespace CRTravelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Picture
@@ -29,9 +31,16 @@ class Picture
     private $address;
 
     /**
+     * @var File
+     *
+     * @Assert\File(maxSize = "1024k")
+     */
+    private $addressFile;
+
+    /**
      * @var Partner
      *
-     * @ORM\ManyToOne(targetEntity="Partner")
+     * @ORM\ManyToOne(targetEntity="Partner", inversedBy="pictures")
      * @ORM\JoinColumn(name="fk_partner_id", referencedColumnName="id")
      */
     private $partner;
@@ -70,6 +79,24 @@ class Picture
     {
         return $this->address;
     }
+
+    /**
+     * @return File
+     */
+    public function getAddressFile()
+    {
+        return $this->addressFile;
+    }
+
+    /**
+     * @param File $addressFile
+     */
+    public function setAddressFile($addressFile)
+    {
+        $this->addressFile = $addressFile;
+    }
+
+
 
     /**
      * Set partner

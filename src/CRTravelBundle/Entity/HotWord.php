@@ -31,7 +31,7 @@ class HotWord
     /**
      * @var Partner
      *
-     * @ORM\ManyToOne(targetEntity="Partner")
+     * @ORM\ManyToOne(targetEntity="Partner", inversedBy="hotWords")
      * @ORM\JoinColumn(name="fk_partner_id", referencedColumnName="id")
      */
     private $partner;

@@ -2,7 +2,10 @@
 
 namespace CRTravelBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Partner
@@ -53,8 +56,16 @@ class Partner
      * @var string
      *
      * @ORM\Column(name="picture_server_address", type="string", length=200)
-     */
+     *
+    */
     private $pictureAddress;
+
+    /**
+     * @var File
+     *
+     * @Assert\File(maxSize = "1024k")
+     */
+    private $pictureAddressFile;
 
     /**
      * @var string
@@ -127,6 +138,29 @@ class Partner
      * @ORM\Column(name="country", type="string", length=50)
      */
     private $country;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="partner", cascade={"all"})
+     */
+    private $pictures;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="HotWord", mappedBy="partner", cascade={"all"})
+     */
+    private $hotWords;
+
+    /**
+     * Partner constructor.
+     */
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+        $this->hotWords = new ArrayCollection();
+    }
 
 
     /**
@@ -257,6 +291,22 @@ class Partner
     public function getPictureAddress()
     {
         return $this->pictureAddress;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictureAddressFile()
+    {
+        return $this->pictureAddressFile;
+    }
+
+    /**
+     * @param mixed $pictureAddressFile
+     */
+    public function setPictureAddressFile($pictureAddressFile)
+    {
+        $this->pictureAddressFile = $pictureAddressFile;
     }
 
     /**
@@ -419,8 +469,6 @@ class Partner
         $this->location = $location;
     }
 
-
-
     /**
      * Set tripAdvisorLink
      *
@@ -484,4 +532,66 @@ class Partner
     {
         return $this->country;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Add a shit in the loads of shit
+     * @param Picture $picture
+     */
+    public function addPicture(Picture $picture)
+    {
+        $picture->setPartner($this);
+        $this->pictures->add($picture);
+    }
+
+    public function removePicture(Picture $picture)
+    {
+        $this->pictures->removeElement($picture);
+    }
+
+    /**
+     * @param ArrayCollection $pictures
+     */
+    public function setPictures($pictures)
+    {
+        $this->pictures = $pictures;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getHotWords()
+    {
+        return $this->hotWords;
+    }
+
+    /**
+     * @param HotWord $hotWord
+     */
+    public function addHotWord(HotWord $hotWord)
+    {
+        $hotWord->setPartner($this);
+        $this->hotWords->add($hotWord);
+    }
+
+    public function removeHotWord(HotWord $hotWord)
+    {
+        $this->hotWords->removeElement($hotWord);
+    }
+
+    /**
+     * @param ArrayCollection $hotWords
+     */
+    public function setHotWords($hotWords)
+    {
+        $this->hotWords = $hotWords;
+    }
+
 }

@@ -17,9 +17,35 @@ Partner create
     <div class="row">
         <div class="col">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {# form_widget(form) #}
+            {{ form_row(form.name) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.address) }}
+            {{ form_row(form.pictureAddressFile) }}
+            {{ form_row(form.latitude) }}
+            {{ form_row(form.longitude) }}
+            {{ form_row(form.horary) }}
+            {{ form_row(form.comment) }}
+            {{ form_row(form.isSpecialOffer) }}
+            {{ form_row(form.offer) }}
+            {{ form_row(form.location) }}
+            {{ form_row(form.tripAdvisorLink) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.country) }}
+
+            <div class="hot-words" data-prototype="{{ form_widget(form.hotWords.vars.prototype)|e('html_attr') }}">
+                <h3>Hot Words</h3>
+            </div>
+
+            <div class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                <h3>Pictures</h3>
+
+            </div>
+
             <input type="submit" value="Create" class="btn btn-success"/>
-            {{ form_end(form) }}
+            {{ form_widget(form._token) }}
+            {{ form_end(form, {'render_rest':false}) }}
         </div>
     </div>
 

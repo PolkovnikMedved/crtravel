@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Partner controller.
@@ -48,9 +49,17 @@ class PartnerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $fileUploader = $this->get(FileUploader::class);
-            $picture = $partner->getPictureAddress();
+            $picture = $partner->getPictureAddressFile();
             $fileName = $fileUploader->uploadFile($picture);
             $partner->setPictureAddress($fileName);
+
+            // Upload files
+            foreach($partner->getPictures()->getIterator() as $i=>$item)
+            {
+                $pic = $item->getAddressFile();
+                $pictureName = $fileUploader->uploadFile($pic);
+                $item->setAddress($pictureName);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($partner);
@@ -94,6 +103,8 @@ class PartnerController extends Controller
         $deleteForm = $this->createDeleteForm($partner);
         $editForm = $this->createForm('CRTravelBundle\Form\PartnerType', $partner);
         $editForm->handleRequest($request);
+
+        //TODO tester si le fichier est != null alors upload !
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
